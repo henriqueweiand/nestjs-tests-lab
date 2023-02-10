@@ -3,6 +3,7 @@ import { ArticleDocument } from './schemas/articles.schema';
 import { CreateDto } from './dto/create.dto';
 import { UpdateDto } from './dto/update.dto';
 import { ArticlesRepository } from './articles.repository';
+import { ArticleNotFound } from './articles.exception';
 
 @Injectable()
 export class ArticlesService {
@@ -17,14 +18,26 @@ export class ArticlesService {
   }
 
   public async findById(id: string): Promise<ArticleDocument> {
-    return this.articlesRepository.findById(id);
+    if (!!id) {
+      return this.articlesRepository.findById(id);
+    } else {
+      throw new ArticleNotFound();
+    }
   }
 
   public async update(id: string, updateDto: UpdateDto) {
-    return this.articlesRepository.findOneAndUpdate({ id }, updateDto);
+    if (!!id) {
+      return this.articlesRepository.findOneAndUpdate({ id }, updateDto);
+    } else {
+      throw new ArticleNotFound();
+    }
   }
 
   public async delete(id: string) {
-    return this.articlesRepository.deleteMany({ _id: id });
+    if (!!id) {
+      return this.articlesRepository.deleteMany({ _id: id });
+    } else {
+      throw new ArticleNotFound();
+    }
   }
 }

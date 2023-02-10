@@ -1,8 +1,9 @@
 import { articleStub } from '../test/stubs/articles.stubs';
 
 export const ArticlesService = jest.fn().mockReturnValue({
-  getUserById: jest.fn().mockResolvedValue(articleStub()),
-  getUsers: jest.fn().mockResolvedValue([articleStub()]),
-  createUser: jest.fn().mockResolvedValue(articleStub()),
-  updateUser: jest.fn().mockResolvedValue(articleStub()),
+  create: jest.fn().mockResolvedValue(articleStub()),
+  findAll: jest.fn().mockResolvedValue([articleStub()]),
+  findById: jest.fn().mockResolvedValue(articleStub()),
+  update: jest.fn().mockResolvedValue(articleStub()),
+  delete: jest.fn().mockResolvedValue(true),
 });
