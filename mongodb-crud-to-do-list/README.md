@@ -20,3 +20,5 @@ This is a simple project with a few technologies just and real example of to-do-
 ## Tips
 
 - if you are going to run the service (nestjs) outside of the docker, please remember to change the value of the env `MONGODB_URL`
+
+https://www.youtube.com/watch?v=1Vc6Xw8FMpg

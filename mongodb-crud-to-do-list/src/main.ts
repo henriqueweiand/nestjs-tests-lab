@@ -19,9 +19,9 @@ async function bootstrap() {
     .addServer(serverUrl)
     .build();
 
-  const document = SwaggerModule.createDocument(app, options);
+  const article = SwaggerModule.createDocument(app, options);
 
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api', app, article);
 
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(port);
