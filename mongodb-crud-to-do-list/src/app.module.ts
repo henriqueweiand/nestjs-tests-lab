@@ -1,13 +1,19 @@
-import 'dotenv/config';
-
+import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ArticlesModule } from './articles/articles.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(process.env.MONGODB_URL), ArticlesModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    ArticlesModule,
+    DatabaseModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

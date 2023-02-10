@@ -20,7 +20,7 @@ import { ArticleDocument } from './schemas/articles.schema';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
-  @Post('create')
+  @Post('')
   @ApiResponse({
     status: HttpStatus.CREATED,
     description: 'Create with success',

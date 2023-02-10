@@ -9,6 +9,7 @@ This is a simple project with a few technologies just and real example of to-do-
 - Docker / docker-composer
 - Tests
 - Swagger
+- Added to run the e2e and unit tests inside of CI/CD (example)
 
 ## Running
 
@@ -20,5 +21,3 @@ This is a simple project with a few technologies just and real example of to-do-
 ## Tips
 
 - if you are going to run the service (nestjs) outside of the docker, please remember to change the value of the env `MONGODB_URL`
-
-https://www.youtube.com/watch?v=1Vc6Xw8FMpg
