@@ -15,17 +15,17 @@ services:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-  app:
-    build: .
-    entrypoint: .docker/entrypoint.sh
-    container_name: mongodb-crud-to-do-list
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/home/node/app
-    depends_on:
-      - mongodb
-      - localstack
+  # app:
+  #   build: .
+  #   entrypoint: .docker/entrypoint.sh
+  #   container_name: mongodb-crud-to-do-list
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - .:/home/node/app
+  #   depends_on:
+  #     - mongodb
+  #     - localstack
 
   mongodb:
     image: mongo:latest

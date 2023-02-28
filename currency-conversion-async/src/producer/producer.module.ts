@@ -12,8 +12,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         return {
           producers: [
             {
-              name: configService.get('TEST_QUEUE'), // name of the queue
-              queueUrl: configService.get('TEST_QUEUE_URL'), // the url of the queue
+              name: configService.get('QUEUE'), // name of the queue
+              queueUrl: configService.get('QUEUE_URL'), // the url of the queue
               region: configService.get('AWS_REGION'),
             },
           ],
