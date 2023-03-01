@@ -1,21 +1,26 @@
 import { Module } from '@nestjs/common';
 import { SqsModule } from '@ssut/nestjs-sqs';
 import { MessageHandler } from './messageHandler';
-import * as AWS from 'aws-sdk';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ProcessMessageUseCase } from './useCases/process-message-use-case';
+import { ExchangeService } from '../exchange/exchange.service';
+import { ExchangeModule } from '../exchange/exchange.module';
+import { HttpModule } from '@nestjs/axios';
+import { OrdersModule } from '../orders/orders.module';
+import { OrdersService } from '../orders/orders.service';
+import { MailModule } from '../mail/mail.module';
+import { MailService } from '../mail/mail.service';
 
 @Module({
   imports: [
+    OrdersModule,
+    HttpModule,
+    ExchangeModule,
+    MailModule,
     SqsModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        // AWS.config.update({
-        //   region: configService.get('AWS_REGION'),
-        //   accessKeyId: configService.get('AWS_ACCESS_KEY_ID'),
-        //   secretAccessKey: configService.get('AWS_SECRET_ACCESS_KEY'),
-        // });
-
         return {
           consumers: [
             {
@@ -29,6 +34,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   controllers: [],
-  providers: [MessageHandler],
+  providers: [
+    MailService,
+    OrdersService,
+    ExchangeService,
+    ProcessMessageUseCase,
+    MessageHandler,
+  ],
 })
 export class ConsumerModule {}

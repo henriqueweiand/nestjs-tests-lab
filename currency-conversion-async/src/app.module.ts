@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConsumerModule } from './consumer/consumer.module';
-import { DatabaseModule } from './database/database.module';
-import { OrdersModule } from './orders/orders.module';
-import { ProducerModule } from './producer/producer.module';
+import { ConsumerModule } from './modules/consumer/consumer.module';
+import { DatabaseModule } from './modules/database/database.module';
+import { MailService } from './modules/mail/mail.service';
+import { OrdersModule } from './modules/orders/orders.module';
+import { ProducerModule } from './modules/producer/producer.module';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { ProducerModule } from './producer/producer.module';
     OrdersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, MailService],
 })
 export class AppModule {}

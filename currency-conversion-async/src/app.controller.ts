@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessageProducer } from './producer/producer.service';
+import { MessageProducer } from './modules/producer/producer.service';
 
 @Controller()
 export class AppController {

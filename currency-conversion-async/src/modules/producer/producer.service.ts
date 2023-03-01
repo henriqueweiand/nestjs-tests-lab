@@ -13,7 +13,13 @@ export class MessageProducer {
     try {
       await this.sqsService.send('sample-queue', {
         id: 'id',
-        body: 'teste',
+        body: {
+          email: 'henriqueweiand@gmail.com',
+          currencyFrom: 'BRL',
+          currencyTo: 'USD',
+          amount: 100,
+          comment: 'its too expensive to exchange real to dollar',
+        },
       });
 
       console.log('message sent');

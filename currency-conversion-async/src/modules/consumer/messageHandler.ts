@@ -1,22 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { SqsConsumerEventHandler, SqsMessageHandler } from '@ssut/nestjs-sqs';
-import { SqsConsumerEventHandlerMeta } from '@ssut/nestjs-sqs/dist/sqs.types';
-import * as AWS from 'aws-sdk';
+import { ProcessMessageUseCase } from './useCases/process-message-use-case';
+
+type TExchangeMessage = {
+  email: string;
+  currencyFrom: string;
+  currencyTo: string;
+  amount: number;
+  comment: string;
+};
 
 @Injectable()
 export class MessageHandler {
-  constructor(private configService: ConfigService) {}
+  constructor(private processMessageUseCase: ProcessMessageUseCase) {}
 
   @SqsMessageHandler('sample-queue')
   async handleMessage(message: AWS.SQS.Message) {
     try {
-      // const payload = JSON.parse(message.Body);
-      console.log('Received message:', message.Body);
-      // await handler.
-    } catch (error) {
-      console.log('Error parsing message:', error);
-      // await handler.deleteMessage();
+      const exchangeMessage = JSON.parse(message.Body) as TExchangeMessage;
+
+      this.processMessageUseCase.execute(exchangeMessage);
+      console.log('success');
+    } catch (e) {
+      console.log(e);
     }
   }
 

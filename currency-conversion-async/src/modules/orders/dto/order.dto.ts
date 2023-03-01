@@ -24,12 +24,12 @@ export class OrderDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  valueFrom: string;
+  valueFrom: number;
 
   @IsNotEmpty()
   @IsString()
   @ApiProperty()
-  valueTo: string;
+  valueTo: number;
 
   @IsNotEmpty()
   @IsString()
