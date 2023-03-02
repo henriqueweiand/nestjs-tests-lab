@@ -1,24 +1,20 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConsumerModule } from './modules/consumer/consumer.module';
-import { DatabaseModule } from './modules/database/database.module';
-import { MailService } from './modules/mail/mail.service';
-import { OrdersModule } from './modules/orders/orders.module';
-import { ProducerModule } from './modules/producer/producer.module';
+import { ConsumerModule } from './providers/queue/consumer/consumer.module';
+import { OrdersModule } from './models/orders/orders.module';
+import { ProducerModule } from './providers/queue/producer/producer.module';
+import { MongoDatabaseProviderModule } from './providers/database/mongo/provider.module';
+import { MailDatabaseProviderModule } from './providers/mail/mail.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    DatabaseModule,
+    MailDatabaseProviderModule,
+    MongoDatabaseProviderModule,
     ProducerModule,
     ConsumerModule,
     OrdersModule,
   ],
   controllers: [AppController],
-  providers: [AppService, MailService],
+  providers: [],
 })
 export class AppModule {}
