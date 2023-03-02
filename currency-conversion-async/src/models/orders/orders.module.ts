@@ -5,7 +5,7 @@ import { ServiceConfigModule } from 'src/config/service/config.module';
 import { MailService } from '../../providers/mail/mail.service';
 import { ExchangeModule } from '../../services/exchange/exchange.module';
 import { Orders, OrdersSchema } from './entities/orders.entity';
-import { OrderCreatedListener } from './listners/order-created.listener';
+import { OrderCreatedListener } from './listeners/order-created.listener';
 import { OrdersRepository } from './orders.repository';
 import { OrdersService } from './orders.service';
 import { ProcessMessageUseCase } from './useCase/process-message-use-case';
