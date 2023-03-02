@@ -12,6 +12,7 @@ import configuration from './configuration';
         MAIL_HOST: Joi.string(),
         MAIL_USER: Joi.string(),
         MAIL_PASS: Joi.string(),
+        MAIL_SENDER: Joi.string(),
       }),
     }),
   ],

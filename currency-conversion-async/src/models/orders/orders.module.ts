@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { ServiceConfigModule } from 'src/config/service/config.module';
-import { MailService } from '../../providers/mail/mail.service';
+import { MailDatabaseProviderModule } from 'src/providers/mail/mail.module';
 import { ExchangeModule } from '../../services/exchange/exchange.module';
 import { Orders, OrdersSchema } from './entities/orders.entity';
 import { OrderCreatedListener } from './listeners/order-created.listener';
@@ -12,13 +11,12 @@ import { ProcessMessageUseCase } from './useCase/process-message-use-case';
 
 @Module({
   imports: [
-    ServiceConfigModule,
+    MailDatabaseProviderModule,
     ExchangeModule,
     MongooseModule.forFeature([{ name: Orders.name, schema: OrdersSchema }]),
   ],
   controllers: [],
   providers: [
-    MailService,
     OrdersRepository,
     OrdersService,
     ProcessMessageUseCase,

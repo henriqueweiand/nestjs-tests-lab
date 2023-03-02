@@ -19,7 +19,19 @@ export class ProcessMessageUseCase {
       amount: queueMessage.amount,
     });
 
-    await this.mailService.plainTextEmail();
+    await this.mailService.postHTMLEmail({
+      to: queueMessage.email,
+      context: {
+        currencyFrom: queueMessage.currencyFrom,
+        currencyTo: queueMessage.currencyTo,
+        amount: queueMessage.amount,
+        valueTo: currencies.data.result,
+        customer: {
+          email: queueMessage.email,
+          name: 'anonymous',
+        },
+      },
+    });
 
     await this.ordersService.create({
       email: queueMessage.email,

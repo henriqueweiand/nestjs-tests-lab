@@ -14,4 +14,7 @@ export class MailConfigService {
   get pass(): string {
     return this.configService.get<string>('mail.pass');
   }
+  get sender(): string {
+    return this.configService.get<string>('mail.sender');
+  }
 }

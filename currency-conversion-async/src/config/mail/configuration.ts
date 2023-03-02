@@ -4,4 +4,5 @@ export default registerAs('mail', () => ({
   host: process.env.MAIL_HOST,
   user: process.env.MAIL_USER,
   pass: process.env.MAIL_PASS,
+  sender: process.env.MAIL_SENDER,
 }));
