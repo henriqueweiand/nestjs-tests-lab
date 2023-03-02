@@ -2,7 +2,15 @@
 
 Blog post https://blog.henriquew.com/currency-conversion-async
 
+This project is using:
+- Localstack (SQS);
+- NestJS;
+- MongoDB;
+- Mail (mailtrap.io)
+- Exchange API (api.apilayer.com)
 
-nextjs -> queue
-queue -> consumer -> https://github.com/nestjs/nest/blob/master/sample/30-event-emitter/src/orders/listeners/order-created.listener.ts
-consumer -> event-emitter -> orders-listening -> use-case
+## Running
+
+1. Copy the file `.env.example` and rename it to `.env`
+2. Fill out the ENVs 
+3. Run the command `docker-compose up`
