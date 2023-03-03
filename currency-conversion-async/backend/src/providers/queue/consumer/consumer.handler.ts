@@ -29,7 +29,9 @@ export class ConsumerHandler {
       const messages = response.Messages ?? [];
 
       for (const message of messages) {
-        const exchangeMessage = JSON.parse(message.Body) as IExchangeMessage;
+        const queueMessage = JSON.parse(message.Body);
+        const exchangeMessage: IExchangeMessage = queueMessage.body;
+
         this.eventEmitter.emit(EnumEventOrders.OrderCreated, exchangeMessage);
 
         await this.deleteMessage(queueUrl, message.ReceiptHandle);
