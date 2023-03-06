@@ -1,6 +1,6 @@
 # frontend 
 
-![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/tree/master/currency-conversion-async/frontend/assets/form.png)
+![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/master/currency-conversion-async/frontend/assets/form.png)
 
 ## Project post
 https://blog.henriquew.com/currency-conversion-async
