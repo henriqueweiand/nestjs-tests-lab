@@ -12,20 +12,20 @@ services:
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "./localstack:/docker-entrypoint-initaws.d"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-  # app:
-  #   build: .
-  #   entrypoint: .docker/entrypoint.sh
-  #   container_name: mongodb-crud-to-do-list
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - .:/home/node/app
-  #   depends_on:
-  #     - mongodb
-  #     - localstack
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: mongodb-crud-to-do-list
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - mongodb
+      - localstack
 
   mongodb:
     image: mongo:latest

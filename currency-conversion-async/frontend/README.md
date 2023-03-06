@@ -14,6 +14,8 @@ This is the frontend of the project which allows the customer to order a currenc
 - ChakraUI
 
 ## How can I run?
-1. install dependecies;
+1. install dependecies (`yarn`);
 2. Execute `yarn dev`
-3. Access http://localhostl:3000
+3. Access http://localhost:3000
+
+`Application use/flow you can check out on the blog post`

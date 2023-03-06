@@ -12,3 +12,8 @@ https://blog.henriquew.com/currency-conversion-async
 - NextJS
 - ChakraUI
 - Zod
+
+## How can I run?
+1. Please, check out the documentations:
+1.1 https://github.com/henriqueweiand/nestjs-tests-lab/blob/master/currency-conversion-async/backend/README.md
+1.2 https://github.com/henriqueweiand/nestjs-tests-lab/blob/master/currency-conversion-async/frontend/README.md
