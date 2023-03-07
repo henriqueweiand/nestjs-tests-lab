@@ -13,9 +13,13 @@ export class ConsumerHandler {
     private queueConfigService: QueueConfigService,
   ) {}
 
+  private get sqsIntance(): AWS.SQS {
+    return new AWS.SQS();
+  }
+
   public async ordersConsumer() {
     const queueUrl = this.queueConfigService.inputOrderUrl;
-    const sqs = new AWS.SQS();
+    const sqs = this.sqsIntance;
     const receiveParams = {
       QueueUrl: queueUrl,
       MaxNumberOfMessages: 10,
@@ -40,7 +44,7 @@ export class ConsumerHandler {
   }
 
   private async deleteMessage(queueUrl: string, receiptHandle: string) {
-    const sqs = new AWS.SQS();
+    const sqs = this.sqsIntance;
     const deleteParams = {
       QueueUrl: queueUrl,
       ReceiptHandle: receiptHandle,
