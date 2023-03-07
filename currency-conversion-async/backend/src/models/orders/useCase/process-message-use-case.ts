@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IExchangeMessage } from 'src/providers/queue/consumer/interfaces/order-created.interface';
-import { ExchangeService } from 'src/services/exchange/exchange.service';
-import { MailService } from 'src/providers/mail/mail.service';
-import { OrdersService } from 'src/models/orders/orders.service';
+import { IExchangeMessage } from '../../../providers/queue/consumer/interfaces/order-created.interface';
+import { ExchangeService } from '../../../services/exchange/exchange.service';
+import { MailService } from '../../../providers/mail/mail.service';
+import { OrdersService } from '../../../models/orders/orders.service';
 
 @Injectable()
 export class ProcessMessageUseCase {
