@@ -1,6 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { MailConfigService } from 'src/config/mail/config.service';
+import { MailConfigService } from '../../config/mail/config.service';
 import { OrderTemplateInput } from './interfaces/mail.interface';
 
 @Injectable()

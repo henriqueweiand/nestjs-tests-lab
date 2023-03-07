@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { ServiceConfigService } from 'src/config/service/config.service';
+import { ServiceConfigService } from '../../config/service/config.service';
 import {
   IConvert,
   IConvertResponse,

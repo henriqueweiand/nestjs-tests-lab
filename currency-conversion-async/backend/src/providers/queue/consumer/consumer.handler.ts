@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import * as AWS from 'aws-sdk';
 import { ReceiveMessageResult } from 'aws-sdk/clients/sqs';
-import { QueueConfigService } from 'src/config/queue/config.service';
+import { QueueConfigService } from '../../../config/queue/config.service';
 import { EnumEventOrders } from './events/orders.enum';
 import { IExchangeMessage } from './interfaces/order-created.interface';
 
