@@ -15,10 +15,10 @@ export class Orders {
   currencyTo: string;
 
   @Prop()
-  valueFrom: string;
+  valueFrom: number;
 
   @Prop()
-  valueTo: string;
+  valueTo: number;
 
   @Prop()
   comment: string;
