@@ -18,7 +18,7 @@ services:
 
   app:
     build: .
-    entrypoint: .docker/entrypoint.sh
+    entrypoint: .docker/entrypoint-tests.sh
     container_name: currency-conversion-async
     ports:
       - "8080:8080"

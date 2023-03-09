@@ -1,18 +1,18 @@
-import { Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Divider, FormControl, FormHelperText, FormLabel, Heading, Input, NumberInput, NumberInputField, Select, Stack, Textarea, useToast } from '@chakra-ui/react';
+import { Alert, AlertIcon, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Divider, FormControl, FormHelperText, FormLabel, Heading, Input, NumberInput, NumberInputField, Select, Stack, Textarea, useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-const newTopicFormSchema = z.object({
+export const newTopicFormSchema = z.object({
     email: z.string().email(),
-    from: z.string(),
-    to: z.string(),
-    amount: z.string().transform((val) => parseInt(val, 10)),
+    from: z.string().nonempty(),
+    to: z.string().nonempty(),
+    amount: z.string().nonempty().transform((val) => parseInt(val, 10)),
     comment: z.string().optional(),
 })
 
-type NewTopicFormInputs = z.infer<typeof newTopicFormSchema>
+export type NewTopicFormInputs = z.infer<typeof newTopicFormSchema>
 
 const Form: React.FC = () => {
     const toast = useToast()
@@ -22,8 +22,12 @@ const Form: React.FC = () => {
         register,
         handleSubmit,
         reset,
-        formState: { isSubmitting },
+        formState: { isValid, defaultValues },
     } = useForm<NewTopicFormInputs>({
+        defaultValues: {
+            from: 'USD',
+            to: 'EUR',
+        },
         resolver: zodResolver(newTopicFormSchema),
     })
 
@@ -59,7 +63,6 @@ const Form: React.FC = () => {
                 isClosable: true,
             })
         }
-
     }
 
     return (
@@ -74,34 +77,40 @@ const Form: React.FC = () => {
                     <Stack spacing='4'>
                         <FormControl>
                             <FormLabel>Email address</FormLabel>
-                            <Input required type='email' {...register('email')} />
+                            <Input value={defaultValues?.email} required data-testid="email" type='email' {...register('email')} />
                             <FormHelperText>We'll never share your email.</FormHelperText>
                         </FormControl>
 
-                        <FormControl>
-                            <FormLabel>From</FormLabel>
-                            <Select required placeholder='Select currency' {...register('from')}>
-                                {Object.keys(currencies).map((key) => <option key={key} value={key}>{currencies[key]}</option>)}
-                            </Select>
-                        </FormControl>
+                        {
+                            currencies.length == 0 ? 'Loading' : (
+                                <>
+                                    <FormControl>
+                                        <FormLabel>From</FormLabel>
+                                        <Select defaultValue={defaultValues?.from} required data-testid="from" placeholder='Select currency' {...register('from')}>
+                                            {Object.keys(currencies).map((key) => <option key={key} value={key}>{currencies[key]}</option>)}
+                                        </Select>
+                                    </FormControl>
 
-                        <FormControl>
-                            <FormLabel>To</FormLabel>
-                            <Select required placeholder='Select currency' {...register('to')}>
-                                {Object.keys(currencies).map((key) => <option key={key} value={key}>{currencies[key]}</option>)}
-                            </Select>
-                        </FormControl>
+                                    <FormControl>
+                                        <FormLabel>To</FormLabel>
+                                        <Select defaultValue={defaultValues?.to} required data-testid="to" placeholder='Select currency' {...register('to')}>
+                                            {Object.keys(currencies).map((key) => <option key={key} value={key}>{currencies[key]}</option>)}
+                                        </Select>
+                                    </FormControl>
+                                </>
+                            )
+                        }
 
                         <FormControl>
                             <FormLabel>Amount</FormLabel>
                             <NumberInput min={1}>
-                                <NumberInputField required {...register('amount')} />
+                                <NumberInputField data-testid="amount" required {...register('amount')} />
                             </NumberInput>
                         </FormControl>
 
                         <FormControl>
                             <FormLabel>Comment</FormLabel>
-                            <Textarea {...register('comment')} />
+                            <Textarea data-testid="comment" {...register('comment')} />
                         </FormControl>
                     </Stack>
 
@@ -109,9 +118,17 @@ const Form: React.FC = () => {
 
                 <Divider />
 
-                <CardFooter>
+                {
+                    !isValid && (
+                        <Alert status='info' data-testid="alert">
+                            <AlertIcon />
+                            Fill out all the fields
+                        </Alert>
+                    )
+                }
+                <CardFooter display={"flex"} gap={4}>
                     <ButtonGroup spacing='2'>
-                        <Button type='submit' variant='solid' colorScheme='blue'>
+                        <Button data-testid="submit" disabled={!isValid} type='submit' variant='solid' colorScheme={isValid ? 'blue' : 'red'}>
                             Send
                         </Button>
                         <Button onClick={() => reset()} variant='ghost' colorScheme='blue'>
