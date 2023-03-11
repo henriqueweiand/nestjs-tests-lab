@@ -36,3 +36,7 @@ First tell me, do you want to run with docker (recommended if you want just to r
 6. Now you have to run the frontend https://github.com/henriqueweiand/nestjs-tests-lab/blob/master/currency-conversion-async/frontend/README.md
 
 `Application use/flow you can check out on the blog post`
+
+## Technical class flow
+
+![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/master/currency-conversion-async/assets/class-flow-diagram.png)

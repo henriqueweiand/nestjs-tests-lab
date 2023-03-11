@@ -17,3 +17,7 @@ https://blog.henriquew.com/currency-conversion-async
 1. Please, check out the documentations:
 1.1 https://github.com/henriqueweiand/nestjs-tests-lab/blob/master/currency-conversion-async/backend/README.md
 1.2 https://github.com/henriqueweiand/nestjs-tests-lab/blob/master/currency-conversion-async/frontend/README.md
+
+## Technical application flow
+
+![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/master/currency-conversion-async/flow-diagram.png)
