@@ -39,4 +39,4 @@ First tell me, do you want to run with docker (recommended if you want just to r
 
 ## Technical class flow
 
-![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/master/currency-conversion-async/assets/class-flow-diagram.png)
+![Preview](https://raw.githubusercontent.com/henriqueweiand/nestjs-tests-lab/master/currency-conversion-async/backend/assets/class-flow-diagram.png)
