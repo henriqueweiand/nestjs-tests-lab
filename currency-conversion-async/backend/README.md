@@ -1,7 +1,7 @@
 # currency-exchange-async
 
 ## Project post
-https://blog.henriquew.com/currency-conversion-async
+https://medium.com/@henrique.weiand/currency-conversion-async-6f4e802f51bb
 
 ## Project technologies
 - Localstack (SQS);
